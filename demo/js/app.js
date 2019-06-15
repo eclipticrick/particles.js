@@ -18,6 +18,9 @@ particlesJS('particles-js',
       "number": {
         "value": 80,
         "max": 200,
+        "on_max": {
+          "pop_first": true
+        },
         "density": {
           "enable": true,
           "value_area": 800

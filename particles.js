@@ -22,6 +22,9 @@ var pJS = function(tag_id, params){
       number: {
         value: 400,
         max: Infinity,
+        on_max: {
+          pop_first: false
+        },
         density: {
           enable: true,
           value_area: 800
@@ -752,12 +755,19 @@ var pJS = function(tag_id, params){
   /* ---------- pJS functions - modes events ------------ */
 
   pJS.fn.modes.pushParticles = function(nb, pos){
-    if (pJS.particles.array.length + nb > pJS.particles.number.max) {
+    var max_reached = pJS.particles.array.length + nb > pJS.particles.number.max;
+    if (max_reached && !pJS.particles.number.on_max.pop_first) {
       return
     }
+
     pJS.tmp.pushing = true;
 
     for(var i = 0; i < nb; i++){
+
+      if (max_reached && pJS.particles.number.on_max.pop_first) {
+        pJS.particles.array.shift();
+      }
+
       pJS.particles.array.push(
         new pJS.fn.particle(
           pJS.particles.color,
