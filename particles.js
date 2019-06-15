@@ -21,6 +21,7 @@ var pJS = function(tag_id, params){
     particles: {
       number: {
         value: 400,
+        max: Infinity,
         density: {
           enable: true,
           value_area: 800
@@ -1121,7 +1122,7 @@ var pJS = function(tag_id, params){
           switch(pJS.interactivity.events.onclick.mode){
 
             case 'push':
-              if(pJS.particles.move.enable){
+              if(pJS.particles.move.enable && pJS.particles.array.length <= pJS.particles.number.max){
                 pJS.fn.modes.pushParticles(pJS.interactivity.modes.push.particles_nb, pJS.interactivity.mouse);
               }else{
                 if(pJS.interactivity.modes.push.particles_nb == 1){
