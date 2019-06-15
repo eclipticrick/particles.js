@@ -1,1 +1,3 @@
-particles.min.js
+*.iml
+/.idea
+/node_modules
