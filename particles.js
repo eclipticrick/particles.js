@@ -752,7 +752,9 @@ var pJS = function(tag_id, params){
   /* ---------- pJS functions - modes events ------------ */
 
   pJS.fn.modes.pushParticles = function(nb, pos){
-
+    if (pJS.particles.array.length + nb > pJS.particles.number.max) {
+      return
+    }
     pJS.tmp.pushing = true;
 
     for(var i = 0; i < nb; i++){
@@ -1122,7 +1124,7 @@ var pJS = function(tag_id, params){
           switch(pJS.interactivity.events.onclick.mode){
 
             case 'push':
-              if(pJS.particles.move.enable && pJS.particles.array.length <= pJS.particles.number.max){
+              if(pJS.particles.move.enable){
                 pJS.fn.modes.pushParticles(pJS.interactivity.modes.push.particles_nb, pJS.interactivity.mouse);
               }else{
                 if(pJS.interactivity.modes.push.particles_nb == 1){
